@@ -10,6 +10,7 @@ RUN npm install
 
 # Copy source code and configs
 COPY src ./src
+COPY drizzle ./drizzle
 COPY drizzle.config.ts ./
 COPY migrate.ts ./
 COPY test-apis.ts ./
