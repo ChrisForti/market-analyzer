@@ -1,32 +1,19 @@
 import cron from "node-cron";
-import { chat } from "./agent.js";
-import { loadSession, saveSession } from "./store.js";
-
-const SCHEDULER_SESSION_ID = "autonomous-scheduler";
+import { runJimmy } from "./lib/jimmy.js";
+import { marketOpportunities } from "./db/schema.js";
+import { supMarketAgent } from "./agents/sup-market.js";
 
 /**
- * Run an autonomous task - Jimmy analyzes market trends and takes action
+ * Run automated SUP market research
  */
 async function runMarketAnalysis() {
-  console.log("[Scheduler] Running market analysis...");
-
-  const prompt = `You are Jimmy, an autonomous POD business agent. Your task:
-
-1. Research current trending topics and products online
-2. Identify profitable designs for: shirts, stationary, mugs, sportfishing boat parts, and boat cosmetic repairs/upgrades
-3. Use the Railway API to check what products exist
-4. Create new trending products if opportunities found
-5. Report your findings and actions taken
-
-Focus on data-driven decisions. Look for trends with high search volume and low competition.`;
+  console.log("[Scheduler] Running artisan watercraft market analysis...");
 
   try {
-    const history = loadSession(SCHEDULER_SESSION_ID);
-    const { reply, newMessages } = await chat(prompt, history);
-    saveSession(SCHEDULER_SESSION_ID, newMessages);
-
-    console.log("[Scheduler] Analysis complete:");
-    console.log(reply);
+    const results = await runJimmy(supMarketAgent, marketOpportunities);
+    console.log(
+      `[Scheduler] Analysis complete: ${results.length} opportunities identified`,
+    );
   } catch (error) {
     console.error("[Scheduler] Error during market analysis:", error);
   }

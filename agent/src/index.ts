@@ -1,35 +1,13 @@
-import express from "express";
-import { chat } from "./agent.js";
-import { loadSession, saveSession } from "./store.js";
+import { runJimmy } from "./lib/jimmy.js";
+import { marketOpportunities } from "./db/schema.js";
+import { supMarketAgent } from "./agents/sup-market.js";
 import { startScheduler } from "./scheduler.js";
 
-const app = express();
-app.use(express.json());
+// Run the SUP Market Research Agent immediately
+runJimmy(supMarketAgent, marketOpportunities);
 
-app.post("/chat", async (req, res) => {
-  const message = req.body?.message;
-  const sessionId = req.body?.sessionId;
-
-  if (typeof message !== "string") {
-    res.status(400).json({ error: "body.message (string) required" });
-    return;
-  }
-
-  try {
-    const history = sessionId ? loadSession(sessionId) : [];
-    const { reply, newMessages } = await chat(message, history);
-    if (sessionId) saveSession(sessionId, newMessages);
-    res.json({ reply });
-  } catch (e) {
-    console.error(e);
-    res.status(500).json({ error: String(e) });
-  }
-});
-
-const port = Number(process.env.PORT) || 3141;
-app.listen(port, () => {
-  console.log(`Agent listening on http://localhost:${port}`);
-
-  // Start autonomous scheduler
+// Start the scheduler for automated research runs
+if (process.env.ENABLE_SCHEDULER === "true") {
   startScheduler();
-});
+  console.log("📅 Scheduler enabled - Jimmy will run automated research");
+}

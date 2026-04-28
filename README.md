@@ -1,23 +1,170 @@
-# Jimmy
+# Jimmy - Artisan Watercraft Market Research Agent
 
-**Jimmy** is an autonomous AI agent designed to run on a Raspberry Pi and manage a Print on Demand (POD) business. The agent performs market trend analysis for products like shirts, stationary, mugs, sportfishing boat parts, and cosmetic repairs using Printful, and integrates with an existing site and API (@4dthreads dev).
+**Jimmy** is an autonomous AI agent designed to run on a Raspberry Pi and research market trends in the high-end artisan watercraft industry. The agent performs real-time market analysis using **Tavily Search API** (free tier) + **OpenRouter** (free models) for virtually cost-free operation.
 
-**Stack:** React, Node, TypeScript
+**Role:** Senior Market Strategist & Artisan Researcher  
+**Industry Focus:** High-End Artisan Personal Watercraft (SUP, Surf, Kayak, Canoe)  
+**Core Philosophy:** Hollow-wood, Cedar-strip, Cold-molded, and CNC-integrated composite artisan builds
+
+**Stack:** Node, TypeScript, Drizzle ORM, PostgreSQL, Tavily Search API, OpenRouter
 
 ## Project Overview
 
 - **Deployment**: Runs autonomously on Raspberry Pi
 - **Remote Access**: Manage from Mac via SSH
-- **Primary Function**: POD site management and trend analysis
-- **Integration**: Works with existing site/API infrastructure
-- **Products**: Shirts, stationary, mugs, sportfishing boat parts, cosmetic repairs via Printful API
+- **Primary Function**: Artisan watercraft market opportunity research
+- **Database**: PostgreSQL with Drizzle ORM
+- **AI Architecture**: Tavily (free search) → OpenRouter (free/cheap LLMs)
+- **Monthly Cost**: ~$5-10 (just database hosting!)
+- **Focus**:
+  - **Primary**: Wooden SUPs (Touring, Displacement, All-around hulls)
+  - **Secondary**: Hollow wooden surfboards, cedar-strip canoes/kayaks, artisan accessories
+
+## Jimmy's Two-Step Research Workflow
+
+**Why This Architecture?**
+
+- Tavily provides FREE real-time web search (1,000/month)
+- OpenRouter offers FREE LLMs (Gemini 2.0 Flash)
+- Result: Virtually free market research with current data!
+
+**Step 1: Tavily Search (FREE)**
+
+- Jimmy sends optimized search queries to Tavily
+- Tavily returns AI-ready clean text from 10+ sources
+- No credit card required for free tier
+
+**Step 2: OpenRouter Analysis (Nearly FREE)**
+
+- Jimmy sends Tavily results to OpenRouter (Gemini Flash)
+- LLM structures data into actionable market opportunities
+- Cost: ~$0.001 per research run
+
+**Cost: ~$0** per month for API usage (free tiers) + ~$5-10 for database
+
+## Research Objectives
+
+### The "Paddleboard Phase" (Primary Focus)
+
+Jimmy scans 2026 global/regional markets for wood-constructed SUPs (no inflatables/foam-core):
+
+- **Shape & Performance Trends**: Touring vs Displacement vs All-Around, preferred lengths (12'6" vs 14')
+- **Aesthetic Materiality**: Viral wood combinations (Western Red Cedar, Dark Walnut, Paulownia)
+- **Luxury Feature Gaps**: Integrated tech (GPS mounts), specialized fins, Eco-Luxe bio-resin finishes
+- **Price Ceiling**: Boutique hand-built hollow wooden board retail positioning
+
+### Custom Craft Expansion (Secondary Focus)
+
+Identifies "Build Gaps" where artisan woodworking provides competitive advantage:
+
+- Hollow Wooden Surfboards (Longboard/Mid-length segments)
+- Cedar-Strip Canoes & Kayaks (Solo Pack Boats, Expedition Kayaks, Prospector shapes)
+- Technical Accessories (wooden paddles, CNC-machined fin boxes, decorative inlays)
+
+## Shop Capabilities
+
+Research is constrained/optimized by actual shop capabilities:
+
+- **Hand-Build Mastery**: Zero size limits for cedar-strip or hollow-wood projects
+- **CNC Precision**: 3018 Pro (300mm x 400mm) for custom parts, placards, hardware, inlays
+- **Material Access**: Marine Hardwoods (Teak, Mahogany, Walnut), Acrylics, King StarBoard
+
+## Tech Stack
+
+- **Runtime**: Node.js + TypeScript
+- **Database**: PostgreSQL with Drizzle ORM
+- **AI APIs**:
+  - **Tavily Search API** - Real-time web search (FREE tier: 1,000 searches/month)
+  - **OpenRouter** - LLM analysis with free Gemini 2.0 Flash model
+- **Scheduling**: node-cron for automated research runs
+- **Cost**: ~$5-10/month (just database hosting!)
+
+## Getting Started
+
+### 1. Install Dependencies
+
+```bash
+cd agent
+npm install
+```
+
+### 2. Configure Environment
+
+Copy the example environment file and add your API keys:
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` with your credentials:
+
+```
+DATABASE_URL=postgresql://user:password@localhost:5432/jimmy
+TAVILY_API_KEY=tvly-xxxxxxxxxxxxx
+OPENROUTER_API_KEY=sk-or-xxxxxxxxxxxxx
+```
+
+### 3. Set Up Database
+
+Generate and run migrations:
+
+```bash
+npm run db:generate
+npm run db:migrate
+```
+
+### 4. Run Jimmy
+
+Development mode (with hot reload):
+
+```bash
+npm run dev
+```
+
+Production mode:
+
+```bash
+npm run build
+npm start
+```
+
+## Database Schema
+
+The `market_opportunities` table stores structured research following Jimmy Guidelines:
+
+**Core Opportunity Fields** (per Guidelines Section 4):
+
+- **opportunity**: High-value build opportunity (e.g., "14' Hollow-Wood Touring SUP")
+- **marketWhy**: Data supporting demand
+- **materialRecommendation**: Wood/finish combo that will sell
+- **cncEdge**: How the 3018 Pro CNC adds value
+- **targetBuyerPersona**: Who buys & what they value
+
+**Technical Details**:
+
+- **craftType**: SUP, Surfboard, Kayak, Canoe, Accessory
+- **hullType**: Touring, Racing, Displacement, All-around
+- **constructionMethod**: Hollow-wood, Cedar-strip, Cold-molded
+- **length/width**: Dimensions
+
+**Materials & Aesthetics**:
+
+- **primaryWood**: Western Red Cedar, Paulownia, Teak, etc.
+- **accentWood**: Walnut, Sapele Mahogany, etc.
+- **finishTrend**: Matte, High-Gloss, Bio-Epoxy, Eco-Luxe
+
+**Market Intelligence**:
+
+- **pricePoint**: Retail positioning
+- **marketSentiment**: Demand indicators
+- **luxuryFeatures**: GPS mounts, custom inlays, fin setups, etc.
 
 ## Guidelines
 
 - **Radical Simplicity**: Keep code minimal, avoid over-engineering, prefer straightforward solutions
 - **Testing**: Unit tests only needed for flaky code – focus on complex logic, edge cases, and error-prone areas
 
-## Quick Start Guide
+## Deploying to Raspberry Pi
 
 ### First-Time Setup (Raspberry Pi)
 
@@ -31,83 +178,76 @@
    ssh chris@100.119.12.61
    ```
 
-2. **Navigate to Jimmy:**
+2. **Clone and setup:**
 
    ```bash
-   cd ~/Jimmy
+   cd ~
+   git clone <your-repo-url> Jimmy
+   cd Jimmy/agent
+   npm install
    ```
 
-3. **Start the containers:**
+3. **Configure environment:**
 
    ```bash
-   docker compose up -d
+   cp .env.example .env
+   nano .env  # Add your API keys and database URL
    ```
 
-4. **Pull the AI model (one-time, ~2GB download):**
+4. **Run migrations and start:**
 
    ```bash
-   docker exec -it ollama ollama pull llama3.2
+   npm run db:migrate
+   npm run build
+   npm start
    ```
 
-5. **Verify it's running:**
+### Regular Operation
 
-   ```bash
-   docker logs jimmy-agent --tail 20
-   # Should see: "Agent listening on http://localhost:3141"
-
-   curl -X POST http://localhost:3141/chat \
-     -H "Content-Type: application/json" \
-     -d '{"message":"What time is it?"}'
-   ```
-
-### Regular Startup
+To start/stop Jimmy on the Pi:
 
 ```bash
 # Connect to Pi
 ssh chris@100.119.12.61
 
-# Start Jimmy
-cd ~/Jimmy && docker compose up -d
-
-# Check status
-docker ps
+# Navigate and start
+cd ~/Jimmy/agent
+npm run dev  # or npm start for production
 ```
 
-### Stopping Jimmy
+## Research Agent
 
-```bash
-cd ~/Jimmy && docker compose down
-```
+Jimmy's artisan watercraft research agent follows a structured approach:
 
-## Accessing Services
+1. **Queries Perplexity AI** for real-time market intelligence on artisan watercraft
+2. **Analyzes opportunities** across SUPs, surfboards, kayaks, canoes, and accessories
+3. **Structures insights** per Jimmy Guidelines (opportunity, marketWhy, materialRecommendation, cncEdge, buyerPersona)
+4. **Stores strategic data** in PostgreSQL for trend tracking and build planning
+5. **Can be scheduled** with cron for automated research runs (every 6 hours)
 
-### From the Raspberry Pi (localhost):
+**Output Format**: Each research cycle produces 5-10 high-value opportunities with:
 
-- **Jimmy Agent**: `http://localhost:3141`
-- **Open WebUI**: `http://localhost:3000`
-- **Ollama**: `http://localhost:11434`
+- Market evidence and demand data
+- Specific wood/finish recommendations
+- CNC value-add suggestions (3018 Pro capabilities)
+- Target buyer personas with willingness-to-pay
+- Focus on boutique/artisan markets (not mass production)
 
-### From your Mac (via Tailscale):
+Customize the agent in [src/agents/sup-market.ts](agent/src/agents/sup-market.ts).
 
-- **Jimmy Agent**: `http://100.119.12.61:3141`
-- **Open WebUI**: `http://100.119.12.61:3000`
-- **Ollama**: `http://100.119.12.61:11434`
-
-## Testing the Agent
-
-Test Jimmy with a simple query:
-
-```bash
 # On Pi:
+
 curl -X POST http://localhost:3141/chat \
-  -H "Content-Type: application/json" \
-  -d '{"message":"What time is it?"}'
+ -H "Content-Type: application/json" \
+ -d '{"message":"What time is it?"}'
 
 # From Mac:
+
 curl -X POST http://100.119.12.61:3141/chat \
-  -H "Content-Type: application/json" \
-  -d '{"message":"What products should we analyze today?"}'
-```
+ -H "Content-Type: application/json" \
+ -d '{"message":"What products should we analyze today?"}'
+
+````
 
 ### Using sessions (memory):
 
@@ -119,7 +259,7 @@ curl -X POST http://localhost:3141/chat \
 curl -X POST http://localhost:3141/chat \
   -H "Content-Type: application/json" \
   -d '{"message":"What is my name?","sessionId":"user-1"}'
-```
+````
 
 ## Troubleshooting
 
