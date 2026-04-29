@@ -16,6 +16,7 @@
 - **Database**: PostgreSQL with Drizzle ORM
 - **AI Architecture**: Tavily (free search) → OpenRouter (free/cheap LLMs)
 - **Monthly Cost**: ~$5-10 (just database hosting!)
+- **Transparency**: Every insight includes source citations (e.g., "NMMA 2026 Report", "Etsy Trending")
 - **Focus**:
   - **Primary**: Wooden SUPs (Touring, Displacement, All-around hulls)
   - **Secondary**: Hollow wooden surfboards, cedar-strip canoes/kayaks, artisan accessories
@@ -135,6 +136,7 @@ The `market_opportunities` table stores structured research following Jimmy Guid
 **Core Opportunity Fields** (per Guidelines Section 4):
 
 - **opportunity**: High-value build opportunity (e.g., "14' Hollow-Wood Touring SUP")
+- **sourceOrigin**: Primary data source citations (e.g., "NMMA 2026 Report", "Etsy Trending", "Verified Market Research") - ensures transparency and verifiability
 - **marketWhy**: Data supporting demand
 - **materialRecommendation**: Wood/finish combo that will sell
 - **cncEdge**: How the 3018 Pro CNC adds value
