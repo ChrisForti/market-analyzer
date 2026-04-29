@@ -17,7 +17,7 @@ export const openRouter = new OpenAI({
 });
 
 /**
- * Jimmy's two-step research workflow:
+ * Two-step research workflow:
  * 1. Tavily searches the web for real-time market data (free tier)
  * 2. OpenRouter (cheap LLM) analyzes the data and structures it
  */
@@ -77,7 +77,7 @@ Based on this current 2026 market data, provide your structured analysis as JSON
     const data = JSON.parse(response.choices[0].message.content || "{}");
     const results = Array.isArray(data) ? data : data.results || [];
 
-    console.log("\n📊 Jimmy's Analysis:");
+    console.log("\n📊 Market Analysis:");
     console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     console.log(JSON.stringify(results, null, 2));
     console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
@@ -102,7 +102,7 @@ Based on this current 2026 market data, provide your structured analysis as JSON
       return [];
     }
   } catch (error) {
-    console.error("❌ Error running Jimmy:", error);
+    console.error("❌ Error running market analysis:", error);
     throw error;
   }
 }

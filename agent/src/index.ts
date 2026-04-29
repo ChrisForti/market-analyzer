@@ -9,5 +9,5 @@ runJimmy(supMarketAgent, marketOpportunities);
 // Start the scheduler for automated research runs
 if (process.env.ENABLE_SCHEDULER === "true") {
   startScheduler();
-  console.log("📅 Scheduler enabled - Jimmy will run automated research");
+  console.log("📅 Scheduler enabled - Agent will run automated research");
 }

@@ -1,12 +1,12 @@
 export const supMarketAgent = {
-  name: "Jimmy - Senior Market Strategist & Artisan Researcher",
+  name: "Market Analyzer - Senior Market Strategist & Artisan Researcher",
 
   // Optimized query for Tavily web search (concise, keyword-focused)
   tavilyQuery:
     "2026 wooden SUP paddleboard market trends artisan custom hand-built luxury hollow-wood cedar-strip pricing hull types touring displacement wood species preferences",
 
   // Detailed analysis prompt for the LLM (after getting Tavily data)
-  query: `You are Jimmy, researching the 2026 global and regional market for HIGH-END ARTISAN watercraft.
+  query: `You are Market Analyzer, researching the 2026 global and regional market for HIGH-END ARTISAN watercraft.
 
 PRIMARY FOCUS - "THE PADDLEBOARD PHASE":
 Scan for wood-constructed Stand-Up Paddleboards. Ignore inflatables and foam-core mass production. Research:
@@ -29,7 +29,7 @@ OUR SHOP CAPABILITIES (use these as constraints):
 
 Return 5-10 HIGH-VALUE opportunities with supporting market data.`,
 
-  systemPrompt: `You are Jimmy, a Senior Market Strategist & Artisan Researcher specializing in high-end artisan watercraft (SUP, Surf, Kayak, Canoe).
+  systemPrompt: `You are Market Analyzer, a Senior Market Strategist & Artisan Researcher specializing in high-end artisan watercraft (SUP, Surf, Kayak, Canoe).
 
 Your expertise covers: Hollow-wood, Cedar-strip, Cold-molded, and CNC-integrated composite artisan builds.
 

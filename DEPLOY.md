@@ -1,11 +1,11 @@
-# Jimmy - Deploying to Raspberry Pi
+# Market Analyzer - Deploying to Raspberry Pi
 
 ## Quick Start on Pi
 
 1. **Clone/Pull the repo:**
 
    ```bash
-   cd ~/Jimmy
+   cd ~/market-analyzer
    git pull origin main
    ```
 
@@ -33,9 +33,9 @@
 4. **Access Adminer (database UI):**
    - Open: `http://raspberrypi:8081` (or `http://100.119.12.61:8081`)
    - Server: `postgres`
-   - Username: `jimmy`
-   - Password: `jimmy_dev_password`
-   - Database: `jimmy`
+   - Username: `market_analyzer`
+   - Password: `market_analyzer_dev_password`
+   - Database: `market_analyzer`
 
 ## Enable 24/7 Scheduler
 
@@ -68,7 +68,7 @@ docker compose up -d --build agent
 docker compose exec agent npm run dev
 
 # Check database
-docker compose exec postgres psql -U jimmy -d jimmy -c "SELECT * FROM market_opportunities;"
+docker compose exec postgres psql -U market_analyzer -d market_analyzer -c "SELECT * FROM market_opportunities;"
 ```
 
 ## Cost

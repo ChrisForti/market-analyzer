@@ -1,24 +1,24 @@
 services:
   postgres:
     image: postgres:15-alpine
-    container_name: jimmy-postgres
+    container_name: market-analyzer-postgres
     ports:
       - "5433:5432"
     environment:
-      - POSTGRES_DB=jimmy
-      - POSTGRES_USER=jimmy
-      - POSTGRES_PASSWORD=jimmy_dev_password
+      - POSTGRES_DB=market_analyzer
+      - POSTGRES_USER=market_analyzer
+      - POSTGRES_PASSWORD=market_analyzer_dev_password
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U jimmy"]
+      test: ["CMD-SHELL", "pg_isready -U market_analyzer"]
       interval: 5s
       timeout: 5s
       retries: 5
 
   adminer:
     image: adminer:latest
-    container_name: jimmy-adminer
+    container_name: market-analyzer-adminer
     ports:
       - "8081:8080"
     environment:
@@ -28,11 +28,11 @@ services:
 
   agent:
     build: ./agent
-    container_name: jimmy-agent
+    container_name: market-analyzer-agent
     ports:
       - "3141:3141"
     environment:
-      - DATABASE_URL=postgresql://jimmy:jimmy_dev_password@postgres:5432/jimmy
+      - DATABASE_URL=postgresql://market_analyzer:market_analyzer_dev_password@postgres:5432/market_analyzer
       - TAVILY_API_KEY=${TAVILY_API_KEY}
       - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
       - OPENROUTER_MODEL=${OPENROUTER_MODEL}

@@ -1,6 +1,6 @@
-# Jimmy - Artisan Watercraft Market Research Agent
+# Market Analyzer - Artisan Watercraft Market Research Agent
 
-**Jimmy** is an autonomous AI agent designed to run on a Raspberry Pi and research market trends in the high-end artisan watercraft industry. The agent performs real-time market analysis using **Tavily Search API** (free tier) + **OpenRouter** (free models) for virtually cost-free operation.
+**Market Analyzer** is an autonomous AI agent designed to run on a Raspberry Pi and research market trends in the high-end artisan watercraft industry. The agent performs real-time market analysis using **Tavily Search API** (free tier) + **OpenRouter** (free models) for virtually cost-free operation.
 
 **Role:** Senior Market Strategist & Artisan Researcher  
 **Industry Focus:** High-End Artisan Personal Watercraft (SUP, Surf, Kayak, Canoe)  
@@ -21,7 +21,7 @@
   - **Primary**: Wooden SUPs (Touring, Displacement, All-around hulls)
   - **Secondary**: Hollow wooden surfboards, cedar-strip canoes/kayaks, artisan accessories
 
-## Jimmy's Two-Step Research Workflow
+## Two-Step Research Workflow
 
 **Why This Architecture?**
 
@@ -31,13 +31,13 @@
 
 **Step 1: Tavily Search (FREE)**
 
-- Jimmy sends optimized search queries to Tavily
+- Agent sends optimized search queries to Tavily
 - Tavily returns AI-ready clean text from 10+ sources
 - No credit card required for free tier
 
 **Step 2: OpenRouter Analysis (Nearly FREE)**
 
-- Jimmy sends Tavily results to OpenRouter (Gemini Flash)
+- Agent sends Tavily results to OpenRouter (Gemini Flash)
 - LLM structures data into actionable market opportunities
 - Cost: ~$0.001 per research run
 
@@ -47,7 +47,7 @@
 
 ### The "Paddleboard Phase" (Primary Focus)
 
-Jimmy scans 2026 global/regional markets for wood-constructed SUPs (no inflatables/foam-core):
+The agent scans 2026 global/regional markets for wood-constructed SUPs (no inflatables/foam-core):
 
 - **Shape & Performance Trends**: Touring vs Displacement vs All-Around, preferred lengths (12'6" vs 14')
 - **Aesthetic Materiality**: Viral wood combinations (Western Red Cedar, Dark Walnut, Paulownia)
@@ -100,7 +100,7 @@ cp .env.example .env
 Edit `.env` with your credentials:
 
 ```
-DATABASE_URL=postgresql://user:password@localhost:5432/jimmy
+DATABASE_URL=postgresql://user:password@localhost:5432/market_analyzer
 TAVILY_API_KEY=tvly-xxxxxxxxxxxxx
 OPENROUTER_API_KEY=sk-or-xxxxxxxxxxxxx
 ```
@@ -114,7 +114,7 @@ npm run db:generate
 npm run db:migrate
 ```
 
-### 4. Run Jimmy
+### 4. Run the Agent
 
 Development mode (with hot reload):
 
@@ -131,9 +131,9 @@ npm start
 
 ## Database Schema
 
-The `market_opportunities` table stores structured research following Jimmy Guidelines:
+The `market_opportunities` table stores structured research following agent guidelines:
 
-**Core Opportunity Fields** (per Guidelines Section 4):
+**Core Opportunity Fields** (per Agent Guidelines Section 4):
 
 - **opportunity**: High-value build opportunity (e.g., "14' Hollow-Wood Touring SUP")
 - **sourceOrigin**: Primary data source citations (e.g., "NMMA 2026 Report", "Etsy Trending", "Verified Market Research") - ensures transparency and verifiability
@@ -184,8 +184,8 @@ The `market_opportunities` table stores structured research following Jimmy Guid
 
    ```bash
    cd ~
-   git clone <your-repo-url> Jimmy
-   cd Jimmy/agent
+   git clone <your-repo-url> market-analyzer
+   cd market-analyzer/agent
    npm install
    ```
 
@@ -206,24 +206,24 @@ The `market_opportunities` table stores structured research following Jimmy Guid
 
 ### Regular Operation
 
-To start/stop Jimmy on the Pi:
+To start/stop the agent on the Pi:
 
 ```bash
 # Connect to Pi
 ssh chris@100.119.12.61
 
 # Navigate and start
-cd ~/Jimmy/agent
+cd ~/market-analyzer/agent
 npm run dev  # or npm start for production
 ```
 
 ## Research Agent
 
-Jimmy's artisan watercraft research agent follows a structured approach:
+The artisan watercraft research agent follows a structured approach:
 
 1. **Queries Perplexity AI** for real-time market intelligence on artisan watercraft
 2. **Analyzes opportunities** across SUPs, surfboards, kayaks, canoes, and accessories
-3. **Structures insights** per Jimmy Guidelines (opportunity, marketWhy, materialRecommendation, cncEdge, buyerPersona)
+3. **Structures insights** per Agent Guidelines (opportunity, marketWhy, materialRecommendation, cncEdge, buyerPersona)
 4. **Stores strategic data** in PostgreSQL for trend tracking and build planning
 5. **Can be scheduled** with cron for automated research runs (every 6 hours)
 
@@ -277,14 +277,14 @@ docker exec -it ollama ollama pull llama3.2
 
 ```bash
 docker ps
-# Should show: jimmy-agent, ollama, open-webui
+# Should show: market-analyzer-agent, ollama, open-webui
 ```
 
 ### View agent logs:
 
 ```bash
-docker logs jimmy-agent --tail 50
-docker logs jimmy-agent -f  # Follow logs in real-time
+docker logs market-analyzer-agent --tail 50
+docker logs market-analyzer-agent -f  # Follow logs in real-time
 ```
 
 ### Restart everything:
