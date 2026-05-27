@@ -26,7 +26,7 @@ The system runs **three specialized agents** on different schedules:
 - **Schedule**: Every 6 hours
 - **Focus**: Wooden SUPs (Touring, Displacement, All-around hulls)
 - **Table**: `standup_opportunities`
-- **Markets**: High-end artisan paddleboards, hollow-wood construction
+- **Markets**: High-end artisan paddleboards,hollow-wood construction
 
 ### 2. Surfboard Agent (Eco & Wooden Surfboards)
 
